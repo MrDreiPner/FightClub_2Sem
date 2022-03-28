@@ -1,0 +1,2 @@
+C:\Users\Matus\Documents\VS_Code\C++ Folders\FightGame\x64\Debug\FightGame.exe
+C:\Users\Matus\Documents\VS_Code\FightClub\FightGame\x64\Debug\FightGame.exe
