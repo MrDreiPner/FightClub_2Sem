@@ -20,11 +20,11 @@ Skills::Skills(int i) {
 	poiseDmg = poiseD[i];
 	poiseRec = poiseR[i];
 
-	std::cout << "Skill " << skillName << " constructed!" << std::endl;
+	//std::cout << "Skill " << skillName << " constructed!" << std::endl;
 }
 
 
 Skills::~Skills() {
-	std::cout << "Skill " << skillName << " deconstructed!" << std::endl;
+	//std::cout << "Skill " << skillName << " deconstructed!" << std::endl;
 }
 

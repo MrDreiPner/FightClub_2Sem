@@ -7,7 +7,7 @@ class Warrior :
 public:
     Warrior(std::string name);
     ~Warrior();
-    void setWarriorStats();
+    void setStats();
 private:
 };
 

@@ -7,7 +7,7 @@ class Vagabond :
 public:
     Vagabond(std::string name);
     ~Vagabond();
-    void setVagabondStats();
+    void setStats();
 
 private:
 };

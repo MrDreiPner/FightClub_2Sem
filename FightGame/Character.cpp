@@ -10,11 +10,17 @@ Character::Character() {
 	stamina = 100;
 	poise = 60;
 	classID = 4;
-	std::cout << charName << " the " << charClass << " has been constructed with following stats:\nHP: " << HP << "\nStamina: " << stamina << "\nPoise: " << poise << std::endl;
+	int chance = rand() % 9;
+	skill1 = chance;
+	while (chance == Character::skill1) {
+		chance = rand() % 9;
+	}
+	skill2 = chance;
+	//std::cout << charName << " the " << charClass << " has been constructed with following stats:\nHP: " << HP << "\nStamina: " << stamina << "\nPoise: " << poise << std::endl;
 }
 
 Character::~Character() {
-	std::cout << charName << " the " << charClass << " has been destructed" << std::endl;
+	//std::cout << charName << " the " << charClass << " has been destructed" << std::endl;
 	//Character destructor
 }
 

@@ -7,6 +7,7 @@ class Skills
 public:
 	Skills(int i);
 	virtual ~Skills();
+	std::string getSkillName() { return skillName; };
 protected:
 	int skillID{ 0 };
 	std::string skillName{ 0 };

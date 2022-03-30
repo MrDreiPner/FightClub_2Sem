@@ -1,9 +1,2 @@
-﻿  Character.cpp
-  FightGame.cpp
-  Game.cpp
-  Samurai.cpp
-  Skills.cpp
-  Vagabond.cpp
-  Warrior.cpp
-  Generating Code...
-  FightGame.vcxproj -> C:\Users\Matus\Documents\VS_Code\FightClub\FightGame\x64\Debug\FightGame.exe
+﻿  Game.cpp
+  FightGame.vcxproj -> C:\Users\Matus\Documents\VS_Code\FightClub_2Sem\FightGame\x64\Debug\FightGame.exe

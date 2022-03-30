@@ -9,7 +9,7 @@ class Samurai :
 public:
     Samurai(std::string name);
     ~Samurai();
-    void setSamuraiStats();
+    void setStats();
     
 private:
 };
