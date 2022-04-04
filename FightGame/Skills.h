@@ -8,6 +8,12 @@ public:
 	Skills(int i);
 	virtual ~Skills();
 	std::string getSkillName() { return skillName; };
+	int getAttMod() { return attMod; };
+	int getDefMod() { return defMod; };
+	int getStaCost() { return staminaCost; };
+	int getStaDmg() { return staminaDmg; };
+	int getPoiDmg() { return poiseDmg; };
+	int getPoiRec() { return poiseRec; };
 protected:
 	int skillID{ 0 };
 	std::string skillName{ 0 };

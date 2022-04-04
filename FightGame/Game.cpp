@@ -36,7 +36,7 @@ void Game::runGame() {
 //Gamemode selection
 	while (check) {
 		system("cls");
-		std::cout << "Select a gamemode:\n(q) Bot vs. Bot\n(w) Player vs. Bot\n(e) Player vs. Player" << std::endl;
+		std::cout << "Select a gamemode:\n(q) Bot vs. Bot" /*\n(w) Player vs.Bot\n(e) Player vs.Player"*/ << std::endl;
 		sel = _getch();
 		switch (sel) {
 		case 'q': {
@@ -44,7 +44,7 @@ void Game::runGame() {
 			check = false;
 		}
 			break;
-		case 'w':{
+		/*case 'w': {
 			gameMode = 2;
 			check = false;
 		}
@@ -53,7 +53,7 @@ void Game::runGame() {
 			gameMode = 3;
 			check = false;
 		}
-			break;
+			break;*/
 		default: {
 			std::cout << "Invalid input, please select a valid input\nPress any key to continue..." << std::endl;
 			dummy = _getch();
@@ -113,7 +113,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				std::cin >> selection;
 				std::cout << selection;
 				if (selection < 0 || selection > rosterSize-1) {
-					std::cout << "1111111111111111111Invalid selection!\nPress any key to continue..." << std::endl;
+					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					std::cout << selection;
 					dummy = _getch();
 					continue;
@@ -133,7 +133,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				std::cout << "Select P2:" << std::endl;
 				std::cin >> selection;
 				if (selection < 0 || selection > rosterSize-1) {
-					std::cout << "22222222222222222222222Invalid selection!\nPress any key to continue..." << std::endl;
+					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					std::cout << selection;
 					dummy = _getch();
 					continue;
@@ -222,7 +222,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				printRoster(champs);
 				std::cout << "Select P4 (Team Blue):" << std::endl;
 				std::cin >> selection;
-				if (selection < 0 || selection > rosterSize-1) {
+				if ((selection < 0 || selection > rosterSize-1) && champs[selection]->getHP() <=0 ) {
 					std::cout << "Invalid selection!" << std::endl;
 					dummy = _getch();
 					continue;
@@ -483,5 +483,8 @@ void Game::printRoster(Character* champs[]) {
 	system("cls");
 	for (int i = 0; i < rosterSize; i++) {
 		std::cout << i << ". " << champs[i]->getName() << " the " << champs[i]->getClass() << std::endl;
+		if (champs[i]->getHP() <= 0) {
+			std::cout << " --> DEAD" << std::endl;
+		}
 	}
 }

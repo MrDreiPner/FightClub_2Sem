@@ -18,6 +18,8 @@ Combat::Combat(Character& champ1, Character& champ2, Character& champ3, Characte
 	cout << "Press any key to continue..." << endl;
 	_getch();
 	combatScreen(champ1, champ2, champ3, champ4, teams);
+	cout << "Press any key to continue..." << endl;
+	_getch();
 	fight(champ1, champ2, champ3, champ4, teams, skillList);
 }
 
@@ -69,13 +71,75 @@ void Combat::gapCount(int nameLength, int stat) {
 }
 
 void Combat::fight(Character& champ1, Character& champ2, Character& champ3, Character& champ4, bool teams, Skills* skillList[]) {
+	int startHP1 = champ1.getHP();
+	int startHP2 = champ2.getHP();
+	int startHP3 = champ3.getHP();
+	int startHP4 = champ4.getHP();
 	if (teams) {
-
+		int roll1, roll2;
+		while (champ1.getHP() > 0 && champ3.getHP() > 0) {
+			system("cls");
+			roll1 = rand() % 2;
+			roll2 = rand() % 2;
+			if (roll1 == 0) {
+				champ1.useSkill(skillList, champ1.getSkill1(), roll2 == 0 ? champ3.getSkill1() : champ3.getSkill2(), champ3);
+			}
+			else {
+				champ1.useSkill(skillList, champ1.getSkill2(), roll2 == 0 ? champ3.getSkill1() : champ3.getSkill2(), champ3);
+			}
+			if (roll2 == 0) {
+				champ3.useSkill(skillList, champ3.getSkill1(), roll1 == 0 ? champ1.getSkill1() : champ1.getSkill2(), champ1);
+			}
+			else {
+				champ3.useSkill(skillList, champ3.getSkill2(), roll1 == 0 ? champ1.getSkill1() : champ1.getSkill2(), champ1);
+			}
+			combatScreen(champ1, champ2, champ3, champ4, teams);
+			cout << "\nPress any key to continue!" << endl;
+			_getch();
+		}
 	}
 	else {
 		while (champ1.getHP() > 0 && champ3.getHP() > 0) {
-
+			system("cls");
+			combatScreen(champ1, champ2, champ3, champ4, teams);
+			faceoff(champ1, champ3, skillList);
+			if (champ1.getHP() <= 0 && champ3.getHP() <= 0) {
+				cout << "It is a draw! Both fighters get healed!" << endl;
+				champ1.setHP(startHP1);
+				champ3.setHP(startHP3);
+				combatScreen(champ1, champ2, champ3, champ4, teams);
+			}
+			else if (champ1.getHP() <= 0) {
+				combatScreen(champ1, champ2, champ3, champ4, teams);
+				cout << champ3.getName() << " is VICTORIOUS!\n" << champ1.getName() << " DIED!" << endl;
+			}
+			else if (champ3.getHP() <= 0) {
+				combatScreen(champ1, champ2, champ3, champ4, teams);
+				cout << champ1.getName() << " is VICTORIOUS!\n" << champ3.getName() << " DIED!" << endl;
+			}
 		}
 	}
+
 }
+
+void Combat::faceoff(Character& champ1, Character& champ3, Skills* skillList[]) {
+	int roll1, roll2;
+	roll1 = rand() % 2;
+	roll2 = rand() % 2;
+	if (roll1 == 0) {
+		champ1.useSkill(skillList, champ1.getSkill1(), roll2 == 0 ? champ3.getSkill1() : champ3.getSkill2(), champ3);
+	}
+	else {
+		champ1.useSkill(skillList, champ1.getSkill2(), roll2 == 0 ? champ3.getSkill1() : champ3.getSkill2(), champ3);
+	}
+	if (roll2 == 0) {
+		champ3.useSkill(skillList, champ3.getSkill1(), roll1 == 0 ? champ1.getSkill1() : champ1.getSkill2(), champ1);
+	}
+	else {
+		champ3.useSkill(skillList, champ3.getSkill2(), roll1 == 0 ? champ1.getSkill1() : champ1.getSkill2(), champ1);
+	}
+	cout << "\nPress any key to continue!" << endl;
+	_getch();
+}
+
 

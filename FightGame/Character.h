@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include <string>
+#include "Skills.h"
 
 class Character
 {
@@ -14,10 +15,13 @@ public:
 	int getClassID() { return classID; };
 	int getHP() { return HP; };
 	int getST() { return stamina; };
+	int getPoi() { return poise; };
 	void setSkill(int setSkill1, int setSkill2) { skill1 = setSkill1; skill2 = setSkill2; };
 	virtual void setClass(std::string newClass) { charClass = newClass; };
 	virtual void setName(std::string name) { charName = name; };
-	virtual void useSkill(int selSkill, Character& enemy);
+	void setHP(int dmg) { HP = dmg; }; 
+	void setST(int dmg) { stamina = dmg; };
+	virtual void useSkill(Skills* skillList[], int selSkill, int enemySkill, Character& enemy);
 
 protected:
 	std::string charName;
@@ -30,6 +34,7 @@ protected:
 	int poise;
 	int wins{ 0 };
 	int loses{ 0 };
+	int draws{ 0 };
 };
 
 #endif // CHARACTER_H
