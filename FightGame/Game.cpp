@@ -7,6 +7,7 @@
 #include "Vagabond.h"
 #include "Warrior.h"
 #include "Skills.h"
+#include "Combat.h"
 constexpr auto rosterSize = 13;
 
 Game::Game() {
@@ -86,6 +87,7 @@ void Game::runGame() {
 	}
 	int p1, p2, p3, p4;
 	selectChar(skills, champs, playCount, p1, p2, p3, p4);
+	Combat battle(*champs[p1], *champs[p2], *champs[p3], *champs[p4], skills);
 
 	for (int i = 0; i < rosterSize; i++) {
 		delete(champs[i]);
@@ -106,10 +108,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 		//1 v 1 character selection
 		if (playCount == 1) {
 			while (selection < 0 || selection > rosterSize-1) {
-				system("cls");
-				for (int i = 0; i < rosterSize; i++) {
-					std::cout << i << ". " << champs[i]->getName() << std::endl;
-				}
+				printRoster(champs);
 				std::cout << "Select P1:" << std::endl;
 				std::cin >> selection;
 				if (selection < 0 || selection > rosterSize-1) {
@@ -126,14 +125,11 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				charCreation(skills, champs, selection);
 			}
 			selection = -1;
-			while (selection < 0 || selection > 8) {
-				system("cls");
-				for (int i = 0; i < rosterSize; i++) {
-					std::cout << i << ". " << champs[i]->getName() << std::endl;
-				}
+			while (selection < 0 || selection > rosterSize-1) {
+				printRoster(champs);
 				std::cout << "Select P2:" << std::endl;
 				std::cin >> selection;
-				if (selection < 0 || selection > 8) {
+				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
 				}
@@ -148,16 +144,12 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 			if (selection >= 9) {
 				charCreation(skills, champs, selection);
 			}
-			std::cout << champs[p1]->getName() << " VS. " << champs[p3]->getName() << std::endl;
 		}
 		//2 v 2 character selection
 		else {
 			while (selection < 0 || selection > rosterSize-1) {
-				system("cls");
-				for (int i = 0; i < rosterSize; i++) {
-					std::cout << i << ". " << champs[i]->getName() << std::endl;
-				}
-				std::cout << "Select P1:" << std::endl;
+				printRoster(champs);
+				std::cout << "Select P1 (Team Red):" << std::endl;
 				std::cin >> selection;
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
@@ -173,37 +165,8 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 			}
 			selection = -1;
 			while (selection < 0 || selection > rosterSize-1) {
-				system("cls");
-				for (int i = 0; i < rosterSize; i++) {
-					std::cout << i << ". " << champs[i]->getName() << std::endl;
-				}
-				std::cout << "Select P2:" << std::endl;
-				std::cin >> selection;
-				if (selection < 0 || selection > rosterSize-1) {
-					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
-					dummy = _getch();
-				}
-				else if (selection == blocker1 || selection == blocker2 || selection == blocker3) {
-					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
-					dummy = _getch();
-					selection = -1;
-					continue;
-				}
-				else {
-					p2 = selection;
-					blocker2 = selection;
-				}
-			}
-			if (selection >= 9) {
-				charCreation(skills, champs, selection);
-			}
-			selection = -1;
-			while (selection < 0 || selection > rosterSize-1) {
-				system("cls");
-				for (int i = 0; i < rosterSize; i++) {
-					std::cout << i << ". " << champs[i]->getName() << std::endl;
-				}
-				std::cout << "Select P3:" << std::endl;
+				printRoster(champs);
+				std::cout << "Select P3 (Team Blue):" << std::endl;
 				std::cin >> selection;
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
@@ -217,6 +180,29 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				}
 				else {
 					p3 = selection;
+					blocker2 = selection;
+				}
+			}
+			if (selection >= 9) {
+				charCreation(skills, champs, selection);
+			}
+			selection = -1;
+			while (selection < 0 || selection > rosterSize-1) {
+				printRoster(champs);
+				std::cout << "Select P2 (Team Red):" << std::endl;
+				std::cin >> selection;
+				if (selection < 0 || selection > rosterSize-1) {
+					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
+					dummy = _getch();
+				}
+				else if (selection == blocker1 || selection == blocker2 || selection == blocker3) {
+					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
+					dummy = _getch();
+					selection = -1;
+					continue;
+				}
+				else {
+					p2 = selection;
 					blocker3 = selection;
 				}
 			}
@@ -225,11 +211,8 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 			}
 			selection = -1;
 			while (selection < 0 || selection > rosterSize-1) {
-				system("cls");
-				for (int i = 0; i < rosterSize; i++) {
-					std::cout << i << ". " << champs[i]->getName() << std::endl;
-				}
-				std::cout << "Select P4:" << std::endl;
+				printRoster(champs);
+				std::cout << "Select P4 (Team Blue):" << std::endl;
 				std::cin >> selection;
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!" << std::endl;
@@ -246,7 +229,6 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 			if (selection >= 9) {
 				charCreation(skills, champs, selection);
 			}
-			std::cout << champs[p1]->getName() << " and " << champs[p2]->getName() << " VS. " << champs[p3]->getName() << " and " << champs[p4]->getName() << std::endl;
 		}
 	}
 }
@@ -462,5 +444,12 @@ void Game::createRoster(Character* champs[]) {
 			tarnished->setName(names[i]);
 			champs[i] = tarnished;
 		}
+	}
+}
+
+void Game::printRoster(Character* champs[]) {
+	system("cls");
+	for (int i = 0; i < rosterSize; i++) {
+		std::cout << i << ". " << champs[i]->getName() << " the " << champs[i]->getClass() << std::endl;
 	}
 }

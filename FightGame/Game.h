@@ -13,7 +13,7 @@ public:
 	void createRoster(Character* champs[]);
 	void charCreation(Skills* skills[], Character* champs[], int index);
 	void selectSkills(Skills* skills[], Character* champ, int classID);
-	void combat(Character champ1, Character champ2, Character champ3, Character champ4);
+	void printRoster(Character* champs[]);
 
 private:
 	int state;

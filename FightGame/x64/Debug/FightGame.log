@@ -1,2 +1,13 @@
-﻿  Game.cpp
-  FightGame.vcxproj -> C:\Users\Matus\Documents\VS_Code\FightClub_2Sem\FightGame\x64\Debug\FightGame.exe
+﻿  Character.cpp
+  Combat.cpp
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(29,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(30,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(31,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(32,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(38,50): error C2059: syntax error: ')'
+  FightGame.cpp
+  Game.cpp
+  Samurai.cpp
+  Vagabond.cpp
+  Warrior.cpp
+  Generating Code...
