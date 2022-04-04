@@ -109,11 +109,14 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 		if (playCount == 1) {
 			while (selection < 0 || selection > rosterSize-1) {
 				printRoster(champs);
-				std::cout << "Select P1:" << std::endl;
+				std::cout << "Select P1: " << std::endl;
 				std::cin >> selection;
+				std::cout << selection;
 				if (selection < 0 || selection > rosterSize-1) {
-					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
+					std::cout << "1111111111111111111Invalid selection!\nPress any key to continue..." << std::endl;
+					std::cout << selection;
 					dummy = _getch();
+					continue;
 				}
 				else {
 					blocker1 = selection;
@@ -130,8 +133,10 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				std::cout << "Select P2:" << std::endl;
 				std::cin >> selection;
 				if (selection < 0 || selection > rosterSize-1) {
-					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
+					std::cout << "22222222222222222222222Invalid selection!\nPress any key to continue..." << std::endl;
+					std::cout << selection;
 					dummy = _getch();
+					continue;
 				}
 				else if(selection == blocker1){
 					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
@@ -154,6 +159,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					continue;
 				}
 				else {
 					blocker1 = selection;
@@ -171,6 +177,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					continue;
 				}
 				else if (selection == blocker1 || selection == blocker2 || selection == blocker3) {
 					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
@@ -194,6 +201,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					continue;
 				}
 				else if (selection == blocker1 || selection == blocker2 || selection == blocker3) {
 					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
@@ -217,6 +225,7 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				if (selection < 0 || selection > rosterSize-1) {
 					std::cout << "Invalid selection!" << std::endl;
 					dummy = _getch();
+					continue;
 				}
 				else if (selection == blocker1 || selection == blocker2 || selection == blocker3) {
 					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
@@ -235,8 +244,15 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 
 void Game::charCreation(Skills* skills[], Character* champs[], int index) {
 	std::string newName;
-	std::cout << "Your name: ";
-	std::cin >> newName;
+	bool good = true;
+	while (good) {
+		std::cout << "Your name (8 letters max): ";
+		std::cin >> newName;
+		if (newName.length() > 8) {
+			std::cout << "Name too long!" << std::endl;
+		}
+		else { good = false; }
+	}
 	int check = 0;
 	int select;
 	char dummy;
@@ -299,6 +315,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection < 0 || selection > 2) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection = -1;
+					continue;
 				}
 				else {
 					blocker1 = selection;
@@ -311,6 +329,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection2 < 0 || selection2 > 2) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection2 = -1;
+					continue;
 				}
 				else if (selection2 == blocker1) {
 					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
@@ -332,6 +352,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection < 3 || selection > 5) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection = -1;
+					continue;
 				}
 				else {
 					blocker1 = selection;
@@ -344,6 +366,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection2 < 3 || selection2 > 5) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection2 = -1;
+					continue;
 				}
 				else if (selection2 == blocker1) {
 					std::cout << "Champion already selected!\nPress any key to continue..." << std::endl;
@@ -365,6 +389,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection < 6 || selection > 8) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection = -1;
+					continue;
 				}
 				else {
 					blocker1 = selection;
@@ -377,6 +403,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection2 < 6 || selection2 > 8) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection2 = -1;
+					continue;
 				}
 				else if (selection2 == blocker1) {
 					std::cout << "Skill already selected!\nPress any key to continue..." << std::endl;
@@ -398,6 +426,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection < 0 || selection > 8) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection = -1;
+					continue;
 				}
 				else {
 					blocker1 = selection;
@@ -410,6 +440,8 @@ void Game::selectSkills(Skills* skills[], Character* champ, int classID) {
 				if (selection2 < 0 || selection2 > 8) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
+					selection2 = -1;
+					continue;
 				}
 				else if (selection2 == blocker1) {
 					std::cout << "Skill already selected!\nPress any key to continue..." << std::endl;
