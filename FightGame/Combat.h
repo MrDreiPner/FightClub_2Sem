@@ -10,8 +10,9 @@ public:
     virtual ~Combat();
     void combatScreen(Character& champ1, Character& champ2, Character& champ3, Character& champ4, bool teams);
     void gapCount(int nameLength, int hp);
-    void fight(Character& champ1, Character& champ2, Character& champ3, Character& champ4, bool teams, Skills* skillList[]);
+    Character* fight(Character& champ1, Character& champ3, Skills* skillList[]);
     void faceoff(Character& champ1, Character& champ3, Skills* skillList[]);
+    void faceOffScreen(Character& champ1, Character& champ3);
 private:
 
 };

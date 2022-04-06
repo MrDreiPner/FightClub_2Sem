@@ -33,62 +33,78 @@ void Game::runGame() {
 	char sel;
 	int gameMode;
 	bool check = true;
-//Gamemode selection
-	while (check) {
-		system("cls");
-		std::cout << "Select a gamemode:\n(q) Bot vs. Bot" /*\n(w) Player vs.Bot\n(e) Player vs.Player"*/ << std::endl;
-		sel = _getch();
-		switch (sel) {
-		case 'q': {
-			gameMode = 1;
-			check = false;
-		}
+	bool quit = false;
+	//Gamemode selection
+	while(1){
+		while (check) {
+			system("cls");
+			std::cout << "Select a gamemode:\n(q) Bot vs. Bot\n(s) Show Stats\n(x) Quit Game" /*\n(w) Player vs.Bot\n(e) Player vs.Player"*/ << std::endl;
+			sel = _getch();
+			switch (sel) {
+			case 'q': {
+				gameMode = 1;
+				check = false;
+			}
 			break;
-		/*case 'w': {
-			gameMode = 2;
-			check = false;
-		}
+			case 's': {
+				printStats(champs);
+			}
 			break;
-		case 'e': {
-			gameMode = 3;
-			check = false;
-		}
-			break;*/
-		default: {
-			std::cout << "Invalid input, please select a valid input\nPress any key to continue..." << std::endl;
-			dummy = _getch();
-		}
-		}
-	}
-	check = true;
-	int playCount = 0;
-	sel = '\0';
-//Determines player count
-	while (check) {
-		system("cls");
-		std::cout << "Select player count:\n(q) 1 vs. 1\n(w) 2 vs.2" << std::endl;
-		sel = _getch();
-		switch (sel) {
-		case 'q': {
-			playCount = 1;
-			check = false;
-		}
+			case 'x': {
+				check = false;
+				quit = true;
+			}
+			break;
+			/*case 'w': {
+				gameMode = 2;
+				check = false;
+			}
 				break;
-		case 'w': {
-			playCount = 2;
-			check = false;
+			case 'e': {
+				gameMode = 3;
+				check = false;
+			}
+				break;*/
+			default: {
+				std::cout << "Invalid input, please select a valid input\nPress any key to continue..." << std::endl;
+				dummy = _getch();
+			}
+			}
 		}
-				break;
-		default: {
-			std::cout << "Invalid input, please select a valid input\nPress any key to continue..." << std::endl;
-			dummy = _getch();
+		if (quit == true) {
+			break;
 		}
+		bool check1 = true;
+		int playCount = 0;
+		sel = '\0';
+		//Determines player count
+		while (check1) {
+			system("cls");
+			std::cout << "Select player count:\n(q) 1 vs. 1\n(w) 2 vs.2" << std::endl;
+			sel = _getch();
+			switch (sel) {
+			case 'q': {
+				playCount = 1;
+				check1 = false;
+			}
+			break;
+			case 'w': {
+				playCount = 2;
+				check1 = false;
+			}
+			break;
+			default: {
+				std::cout << "Invalid input, please select a valid input\nPress any key to continue..." << std::endl;
+				dummy = _getch();
+			}
+			}
 		}
+		check = true;
+		check1 = true;
+		int p1, p2, p3, p4;
+		selectChar(skills, champs, playCount, p1, p2, p3, p4);
+		Combat battle(*champs[p1], *champs[p2], *champs[p3], *champs[p4], skills);
 	}
-	int p1, p2, p3, p4;
-	selectChar(skills, champs, playCount, p1, p2, p3, p4);
-	Combat battle(*champs[p1], *champs[p2], *champs[p3], *champs[p4], skills);
-
 	for (int i = 0; i < rosterSize; i++) {
 		delete(champs[i]);
 	}
@@ -107,14 +123,13 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 	while (check) {
 		//1 v 1 character selection
 		if (playCount == 1) {
-			while (selection < 0 || selection > rosterSize-1) {
+			selection = -1;
+			while (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 				printRoster(champs);
 				std::cout << "Select P1: " << std::endl;
 				std::cin >> selection;
-				std::cout << selection;
-				if (selection < 0 || selection > rosterSize-1) {
+				if (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
-					std::cout << selection;
 					dummy = _getch();
 					continue;
 				}
@@ -128,13 +143,12 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				charCreation(skills, champs, selection);
 			}
 			selection = -1;
-			while (selection < 0 || selection > rosterSize-1) {
+			while (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 				printRoster(champs);
 				std::cout << "Select P2:" << std::endl;
 				std::cin >> selection;
-				if (selection < 0 || selection > rosterSize-1) {
+				if ((selection < 0 || selection > rosterSize-1) || champs[selection]->getHP() <= 0) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
-					std::cout << selection;
 					dummy = _getch();
 					continue;
 				}
@@ -152,11 +166,11 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 		}
 		//2 v 2 character selection
 		else {
-			while (selection < 0 || selection > rosterSize-1) {
+			while (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 				printRoster(champs);
 				std::cout << "Select P1 (Team Red):" << std::endl;
 				std::cin >> selection;
-				if (selection < 0 || selection > rosterSize-1) {
+				if (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
 					continue;
@@ -170,11 +184,11 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				charCreation(skills, champs, selection);
 			}
 			selection = -1;
-			while (selection < 0 || selection > rosterSize-1) {
+			while (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 				printRoster(champs);
 				std::cout << "Select P3 (Team Blue):" << std::endl;
 				std::cin >> selection;
-				if (selection < 0 || selection > rosterSize-1) {
+				if (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
 					continue;
@@ -194,11 +208,11 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				charCreation(skills, champs, selection);
 			}
 			selection = -1;
-			while (selection < 0 || selection > rosterSize-1) {
+			while (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 				printRoster(champs);
 				std::cout << "Select P2 (Team Red):" << std::endl;
 				std::cin >> selection;
-				if (selection < 0 || selection > rosterSize-1) {
+				if (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 					std::cout << "Invalid selection!\nPress any key to continue..." << std::endl;
 					dummy = _getch();
 					continue;
@@ -218,11 +232,11 @@ void Game::selectChar(Skills* skills[], Character* champs[], int playCount, int&
 				charCreation(skills, champs, selection);
 			}
 			selection = -1;
-			while (selection < 0 || selection > rosterSize-1) {
+			while (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 				printRoster(champs);
 				std::cout << "Select P4 (Team Blue):" << std::endl;
 				std::cin >> selection;
-				if ((selection < 0 || selection > rosterSize-1) && champs[selection]->getHP() <=0 ) {
+				if (selection < 0 || selection > rosterSize-1 || champs[selection]->getHP() <= 0) {
 					std::cout << "Invalid selection!" << std::endl;
 					dummy = _getch();
 					continue;
@@ -482,9 +496,25 @@ void Game::createRoster(Character* champs[]) {
 void Game::printRoster(Character* champs[]) {
 	system("cls");
 	for (int i = 0; i < rosterSize; i++) {
-		std::cout << i << ". " << champs[i]->getName() << " the " << champs[i]->getClass() << std::endl;
+		std::cout << i << ". " << champs[i]->getName() << " the " << champs[i]->getClass();
 		if (champs[i]->getHP() <= 0) {
-			std::cout << " --> DEAD" << std::endl;
+			std::cout << " --> DEAD";
 		}
+		std::cout << std::endl;
 	}
+}
+
+void Game::printStats(Character* champs[]) {
+	system("cls");
+	char dummy;
+	for (int i = 0; i < rosterSize; i++) {
+		std::cout << i << ". " << champs[i]->getName() << " the " << champs[i]->getClass();
+		if (champs[i]->getHP() <= 0) {
+			std::cout << " --> DEAD";
+		}
+		std::cout << std::endl;
+		std::cout << "Wins: " << champs[i]->getWin() << " Loses: " << champs[i]->getLoss() << " Draws: " << champs[i]->getDraw() << std::endl;
+	}
+	std::cout << "\nPress any key to continue..." << std::endl;
+	dummy = _getch();
 }

@@ -1,8 +1,11 @@
 ﻿  Combat.cpp
-C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(32,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(33,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(34,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(35,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(47,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(48,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(63,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(64,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(65,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(66,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(78,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(79,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(168,59): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(169,59): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\Combat.cpp(145): warning C4715: 'Combat::fight': not all control paths return a value
   FightGame.vcxproj -> C:\Users\porub\OneDrive\Dokumente\Visual Studio 2022\FightClub_2Sem\FightGame\x64\Debug\FightGame.exe

@@ -14,6 +14,7 @@ public:
 	void charCreation(Skills* skills[], Character* champs[], int index);
 	void selectSkills(Skills* skills[], Character* champ, int classID);
 	void printRoster(Character* champs[]);
+	void printStats(Character* champs[]);
 
 private:
 	int state;

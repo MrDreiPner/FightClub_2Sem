@@ -22,7 +22,12 @@ public:
 	void setHP(int dmg) { HP = dmg; }; 
 	void setST(int dmg) { stamina = dmg; };
 	virtual void useSkill(Skills* skillList[], int selSkill, int enemySkill, Character& enemy);
-
+	void setLoss() { loses++; };
+	void setWin() { wins++; };
+	void setDraw() { draws++; };
+	int getLoss() { return loses; };
+	int getWin() { return wins; };
+	int getDraw() { return draws; };
 protected:
 	std::string charName;
 	std::string charClass;
